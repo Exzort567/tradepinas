@@ -4,10 +4,11 @@ const User = require("../models/User")
 const bcrypt = require('bcrypt')
 const Post = require("../models/Post")
 const Comment = require("../models/Comment")
+const verifyToken = require('../verifyToken')
 
 
 //CREATE
-router.post("/create", async (req,res) => {
+router.post("/create", verifyToken, async (req,res) => {
     try {
         const newPost = new Post(req.body)
         const savedPost = await newPost.save()
@@ -17,7 +18,7 @@ router.post("/create", async (req,res) => {
     }
 })
 // Update
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
     try {
         
         const updatedUser =  await Post.findByIdAndUpdate(req.params.id,{$set:req.body}, {new:true})
@@ -29,7 +30,7 @@ router.put("/:id", async (req, res) => {
 })
 
 // DELETE
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
     try {
         await Post.findByIdAndDelete(req.params.id)
 
@@ -41,9 +42,14 @@ router.delete("/:id", async (req, res) => {
 })
 
 // GET POST
-router.get("/", async (req, res) => {
+router.get("/", verifyToken, async (req, res) => {
+    const query = req.query
+    
     try {
-        const posts = await Post.find()
+        const searchFilter = {
+            title:{$regex:query.search, $options:"i"}
+        }
+        const posts = await Post.find(query.searc?searchFilter:null)
 
         res.status(200).json(posts)
     } 
@@ -53,7 +59,7 @@ router.get("/", async (req, res) => {
 })
 
 // GET USER POST
-router.get("/user/:userId", async (req, res) => {
+router.get("/user/:userId", verifyToken, async (req, res) => {
     try {
         const posts = await Post.find({userId:req.params.userId})
 
@@ -63,5 +69,8 @@ router.get("/user/:userId", async (req, res) => {
         res.status(500).json(err)
     }
 })
+
+//SEARCH POST
+
  
 module.exports=router
