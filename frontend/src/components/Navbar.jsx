@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom"
 import './NavBarStyle.css'
 import { GoSearch } from "react-icons/go";
+import { HiMiniBars3 } from "react-icons/hi2";
+import { useState } from "react";
+import Menu from "./Menu";
 
 const Navbar = () => {
+    const [menu, setMenu] = useState(false)
+
+    const showMenu = () => {
+        setMenu(!menu)
+    }
+
     const user=false
   return (
     <div className="flex items-center justify-between px-8 md:px-[200px] py-4 bg-[#ff8906]">
@@ -13,9 +22,16 @@ const Navbar = () => {
         <p><GoSearch/></p>
         <input className="outline-none px-3" placeholder="Search a post" type="text"/>
     </div>
-    <div className="flex items-center justify-center md:space-x-4">
+    <div className="hidden md:flex items-center justify-center md:space-x-4">
         {user? <h3><Link to="/write">Write</Link></h3> :<h3><Link to="/login">Login</Link></h3>}
-        {user? <h3>Profile</h3> :<h3><Link to="/register">Register</Link></h3>}
+        {user? <div onClick={showMenu}>
+            <p className="cursor-pointer"><HiMiniBars3 /></p>
+            {menu && <Menu/>} 
+             </div>:<h3><Link to="/register">Register</Link></h3>}
+    </div>
+    <div onClick={showMenu} className="md:hidden">
+        <p className="cursor-pointer"><HiMiniBars3 /></p>
+        {menu && <Menu/>} 
     </div>
 
     </div>
