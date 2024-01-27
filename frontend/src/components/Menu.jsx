@@ -10,6 +10,7 @@ const {setUser} = useContext(UserContext)
 const handleLogout = async () => {
   try {
     const res = await axios.get(URL+"/api/auth/logout",{withCredentials:true})
+    console.log(res)
     setUser(null)
 
   } catch (err) {

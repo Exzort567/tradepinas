@@ -32,4 +32,4 @@ app.use("/api/posts", postRoute)
 app.listen(5000,() => {
     connectDB()
     console.log("app is running on port 5000")
-}) 
+})  
