@@ -3,6 +3,7 @@ const app=express()
 const mongoose=require('mongoose') 
 const cookieParser=require('cookie-parser')
 const cors=require('cors')
+const multer=require('multer')
 const dotenv=require('dotenv')
 const authRoute=require('./routes/auth')
 const userRoute=require('./routes/users')
@@ -29,6 +30,23 @@ app.use(cookieParser())
 app.use("/api/auth", authRoute)
 app.use("/api/users", userRoute)
 app.use("/api/posts", postRoute)
+app.use("/api/comments", commentRoute)
+
+//imge upload
+const storage = multer.diskStorage({
+    destination:(req,file,fn)=>{
+        fn(null, "images")
+    },
+    filename:(req,file,fn)=>{
+        fn(null,req.body.img)
+        // fn(null,"img.jpg")
+    }
+})
+const upload = multer({storage:storage})
+app.post("/api/upload", upload.single("file"),(req,res)=>{
+    res.status(200).json("Image has been uploaded successfully")
+})
+
 app.listen(5000,() => {
     connectDB()
     console.log("app is running on port 5000")

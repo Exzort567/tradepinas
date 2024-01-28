@@ -1,10 +1,8 @@
 
 
 const HomePost = ({post}) => {
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
+ 
+  
     return (
       <div className="common-background w-full flex mt-8 space-x-5 text-white">
         {/* left */}
@@ -21,7 +19,8 @@ const HomePost = ({post}) => {
           <div className="flex mb-2 text-sm font-semibold text-gray-500 items-center justify-between md:mb-4">
             <p className="">@{post.username}</p>
             <div className="flex space-x-2">
-            <p>{formatDate(post.updatedAt)}</p> {/* Format the updatedAt timestamp */}
+            <p>{new Date(post.updatedAt).toString().slice(0,15)}</p>
+                <p>{new Date(post.updatedAt).toString().slice(16,24)}</p> {/* Format the updatedAt timestamp */}
             
             </div>
           </div>
