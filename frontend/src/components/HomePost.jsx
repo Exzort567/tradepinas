@@ -1,4 +1,4 @@
-
+import {IF} from '../url'
 
 const HomePost = ({post}) => {
  
@@ -8,7 +8,7 @@ const HomePost = ({post}) => {
         {/* left */}
         <div className="w-[35%] height-[200px] mt-5 flex justify-center items-center">
           <img
-            src={post.photo}
+            src={IF+post.photo}
             alt=""
             className="mb-4"
           />
