@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Comment from "../components/Comment";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -15,6 +15,7 @@ const PostDetails = () => {
     const [post, setPost] = useState({});
     const {user} = useContext(UserContext)
     const [loader, setLoader] = useState(false)
+    const navigate = useNavigate()
 
     const fetchPost= async () => {
         setLoader(true)
@@ -27,6 +28,16 @@ const PostDetails = () => {
             setLoader(true)
         }
     };
+    const handleDeletePost = async () =>{
+        try {
+            const res = await axios.delete(URL+"/api/posts/"+postId,{withCredentials:true})
+            console.log(res.data)
+            navigate("/")
+        } catch (err) {
+            console.log(err)
+            
+        }
+    }
 
     useEffect(() => {
         fetchPost()
@@ -40,7 +51,7 @@ const PostDetails = () => {
                 <h1 className="text-2x1 font-bold text-black md:text-3xl">{post.title}</h1>
                 {user?._id===post?.userId && <div className="flex items-center justify-center space-x-2">
                 <p><BiEdit /></p>
-                <p><MdDelete /></p>
+                <p className="cursor-pointer" onClick={handleDeletePost}><MdDelete /></p>
                 </div>}            
             </div>
             <div className="flex items-center justify-between mt-2 md:mt-4">
