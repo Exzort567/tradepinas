@@ -48,7 +48,7 @@ console.log(file)
             data.append("img",filename)
             data.append("file",file)
             post.photo=filename
-            console.log(data)
+            // console.log(data)
             
             //image upload
             try{

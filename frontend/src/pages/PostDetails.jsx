@@ -12,7 +12,7 @@ import Loader from "../components/Loader";
 
 const PostDetails = () => {
     const postId = useParams().id;
-    const [post, setPost] = useState({});
+    const [post, setPost] = useState({});   
     const {user} = useContext(UserContext)
     const [loader, setLoader] = useState(false)
     const navigate = useNavigate()
@@ -50,7 +50,7 @@ const PostDetails = () => {
             <div className="flex justify-between items-center">
                 <h1 className="text-2x1 font-bold text-black md:text-3xl">{post.title}</h1>
                 {user?._id===post?.userId && <div className="flex items-center justify-center space-x-2">
-                <p><BiEdit /></p>
+                <p className="cursor-pointer" onClick={()=>navigate("/edit/"+[postId])}><BiEdit /></p>
                 <p className="cursor-pointer" onClick={handleDeletePost}><MdDelete /></p>
                 </div>}            
             </div>

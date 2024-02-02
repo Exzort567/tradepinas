@@ -20,8 +20,8 @@ const connectDB=async()=>{
             console.log("Connected to database successfully")
         }
         catch(err){
-            console.log(err)
-        }
+            console.log(err)     
+        } 
 }
 
 dotenv.config()
