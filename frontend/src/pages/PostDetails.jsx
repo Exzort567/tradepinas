@@ -14,6 +14,8 @@ const PostDetails = () => {
     const postId = useParams().id;
     const [post, setPost] = useState({});   
     const {user} = useContext(UserContext)
+    const [comments,setComments]=useState([])
+    const [comment,setComment]=useState("")
     const [loader, setLoader] = useState(false)
     const navigate = useNavigate()
 
@@ -43,6 +45,42 @@ const PostDetails = () => {
         fetchPost()
     }, [postId]);
 
+    const fetchPostComments=async()=>{
+        setLoader(true)
+        try{
+          const res = await axios.get(URL + "/api/comments/post/" + postId)
+          setComments(res.data)
+          setLoader(false)
+    
+        }
+        catch(err){
+          setLoader(true)
+          console.log(err)
+        }
+      }
+    
+      useEffect(()=>{
+        fetchPostComments()
+    
+      },[postId])
+    
+      const postComment=async(e)=>{
+        e.preventDefault()
+        try{
+          const res=await axios.post(URL+"/api/comments/create",
+          {comment:comment,author:user.username,postId:postId,userId:user._id},
+          {withCredentials:true})
+          
+          // fetchPostComments()
+          // setComment("")
+          window.location.reload(true)
+    
+        }
+        catch(err){
+             console.log(err)
+        }
+    
+      }
     return (
         <div className="">
             <Navbar />
@@ -62,7 +100,7 @@ const PostDetails = () => {
                 </div>
             </div> 
             
-            <img src={IF+post.photo} className="w-full mx-auto mt-8" alt=""/>
+            <img src={IF+post.photo} className="w-full mx-auto mt-8" style={{ width: '750px' }} alt=""/>
             <p className="mx-auto mt-8">
                 {post.desc}
                 </p>
@@ -78,14 +116,15 @@ const PostDetails = () => {
             </div>
             <div className="flex flex-col mt-4">
                     <h3 className="mt-6 mb-4 font-semibold">Comments: </h3>  
-                    <Comment/>
-                    <Comment/>
+                    {comments?.map((c)=>(
+                        <Comment key={c._id} c={c} post={post}/>
+                    ))}
                     
                     </div>
                     {/* write a comment */}
                     <div className="flex flex-col mt-4 md:flex-row">
-                        <input type="text" placeholder="Write a comment" className="md:w-[90%] outline-non px-4 mt-4 md:mt-0"/>
-                        <button className="bg-black text-white px-4 py-2 md:w-[10%] mt-4 md:mt-0">Add a comment</button>
+                        <input onChange={(e)=>setComment(e.target.value)} type="text" placeholder="Write a comment" className="md:w-[90%] outline-non px-4 mt-4 md:mt-0"/>
+                        <button onClick={postComment} className="bg-black text-white px-4 py-2 md:w-[10%] mt-4 md:mt-0">Add a comment</button>
                     </div>
             </div>}
             <Footer />

@@ -10,7 +10,7 @@ const Footer = () => {
             <p>Readers Choice</p>
         </div>
 
-        <div className="flex flex-col text-white">
+        <div className="flex flex-col text-white"> 
             <p>Forum</p>
             <p>Support</p>
             <p>Recent Post</p>
