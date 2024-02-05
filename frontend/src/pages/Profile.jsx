@@ -88,9 +88,9 @@ useEffect(()=>{
   return (
     <div className="bg-[#0f0e17]">
         <Navbar/>
-        <div className="px-8 md:px-[200px] mt-8 flex md:flex-row flex-col-reverse md:items-start">
+        <div className="div1 px-8 md:px-[200px] flex md:flex-row flex-col-reverse md:items-start">
         <div className="flex flex-col md:w-[70%] w-full mt-8 md:mt-0">
-            <h1 className="text-xl font-bold mb-4">Your Post:</h1>
+            <h1 className="profile text-xl font-bold mb-4">Your Post:</h1>
             {posts?.map((p)=>(
               <ProfilePost key={p._id} p={p}/>
             ))}
@@ -99,7 +99,7 @@ useEffect(()=>{
         </div>
         <div className="md:sticky md:top-12 flex justify-start md:justify-end items-start md:w-[30%] w-full md:items-end">
         <div className="flex flex-col space-y-4 items-start">
-            <h1 className="text-xl font-bold mb-4">Profile</h1>
+            <h1 className="profile text-xl font-bold mb-4">Profile</h1>
             <input onChange={(e)=>setUsername(e.target.value)} value={username} className="outline-none px-4 py-2 text-gray-500" placeholder="Your username" type="text"/>
             <input onChange={(e)=>setEmail(e.target.value)} value={email} className="outline-none px-4 py-2 text-gray-500" placeholder="Your email" type="email"/>
             

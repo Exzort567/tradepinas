@@ -74,7 +74,7 @@ console.log(file)
   return (
     <div>
         <Navbar />
-        <div className="px-6 md:px-[200px] mt-8">
+        <div className="auth2 px-6 md:px-[200px] mt-8 ">
             <h1 className="font-bold md:text-2xl text-xl">Create a post</h1>
             <form className="w-full flex flex-col space-y-4 md:space-y-8 mt-4">
                 <input onChange={(e)=>setTitle(e.target.value)} type="text" placeholder="Enter a post title" className="px-4 py-2 outline-none" />

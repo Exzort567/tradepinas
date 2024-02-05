@@ -21,13 +21,13 @@ const Navbar = () => {
     const {user} = useContext(UserContext)
     
   return (
-    <div className="flex items-center justify-between px-8 md:px-[200px] py-4 bg-[#ff8906]">
+    <div className="flex items-center justify-between px-8 md:px-[200px] py-4 bg-[#45A29E]">
         <h1 className="text-lg md:text-x1 font-extrabold">
             <Link to="/">Trade Pinas</Link>
         </h1>
     {path==="/" &&<div className="flex justify-ceanter items-center space-x-0">
         <p onClick={()=>navigate(prompt?"?search="+prompt:navigate("/"))} className="cursor-pointer"><GoSearch/></p>
-        <input onChange={(e)=>setPrompt(e.target.value)} className="outline-none px-3" placeholder="Search a post" type="text"/>
+        <input onChange={(e)=>setPrompt(e.target.value)} className="custom-input outline-none px-3" placeholder="Search a post" type="text"/>
     </div>}
     <div className="hidden md:flex items-center justify-center md:space-x-4">
         {user? <h3><Link to="/write">Write</Link></h3>:<h3><Link to="/login">Login</Link></h3>}

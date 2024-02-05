@@ -47,7 +47,7 @@ function Home() {
    
     <>
       <Navbar />
-     <div className="px-8 md:px-[200px] min-h-[80vh] bg-[#0f0e17]" style={{ marginTop: '0px', marginBottom: '-35px' }}>\
+     <div className="px-8 md:px-[200px] min-h-[80vh] bg-[#0B0C10]" style={{ marginTop: '0px', marginBottom: '-35px' }}>\
 
         {loader?<div className="h-[40vh] flex justify-center items-center"><Loader /></div>:!noResults?posts.map((post)=>(
           <>

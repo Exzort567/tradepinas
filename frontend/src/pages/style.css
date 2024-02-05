@@ -1,0 +1,28 @@
+.auth {
+    background-color: #0B0C10;
+    margin-bottom: -50px;
+}
+.auth_text{
+    color: aqua;
+}
+.inputs{
+    border-radius: 10px;
+    
+}
+.button{
+    background-color: #45A293;
+    border-radius: 12px;
+}
+.button:hover{
+    background-color: aquamarine    ;
+}
+.profile{
+    color: aqua;
+}
+.demo{
+    color: aqua;
+}
+.post{
+    background-color: #0B0C10;
+    color: white;
+}

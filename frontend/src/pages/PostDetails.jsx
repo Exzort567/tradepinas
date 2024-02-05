@@ -81,12 +81,12 @@ const PostDetails = () => {
 
     // Render
     return (
-        <div className="">
+        <div className="post">
             <Navbar />
-            {loader ? <div className="h-[40vh] flex justify-center items-center"><Loader /></div> :
+            {loader ? <div className=" h-[40vh] flex justify-center items-center"><Loader /></div> :
                 <div className="px-8 md:px-[200px0 mt-8">
                     <div className="flex justify-between items-center">
-                        <h1 className="text-2x1 font-bold text-black md:text-3xl">{post.title}</h1>
+                        <h1 className="text-2x1 font-bold md:text-3xl">{post.title}</h1>
                         {user?._id === post?.userId &&
                             <div className="flex items-center justify-center space-x-2">
                                 <p className="cursor-pointer" onClick={() => navigate("/edit/" + [postId])}><BiEdit /></p>
@@ -121,7 +121,7 @@ const PostDetails = () => {
                     </div>
                     <div className="flex flex-col mt-4 md:flex-row">
                         <input onChange={(e) => setComment(e.target.value)} type="text" placeholder="Write a comment" className="md:w-[90%] outline-non px-4 mt-4 md:mt-0" />
-                        <button onClick={postComment} className="bg-black text-white px-4 py-2 md:w-[10%] mt-4 md:mt-0">Add a comment</button>
+                        <button onClick={postComment} className="button px-4 py-2 md:w-[10%] mt-4 md:mt-0">Add a comment</button>
                     </div>
                 </div>}
             <Footer />
