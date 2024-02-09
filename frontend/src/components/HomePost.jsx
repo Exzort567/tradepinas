@@ -1,5 +1,5 @@
 import {IF} from '../url'
-import './NavBarStyle.css'
+
 
 const HomePost = ({post}) => {
  
