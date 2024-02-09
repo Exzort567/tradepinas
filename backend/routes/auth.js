@@ -70,6 +70,10 @@ router.get("/refetch", (req,res)=>{
     })
 })
 
+router.get("/", (req, res) => {
+    res.redirect("https://tradepinas.vercel.app/");
+});
+
 
 
 module.exports=router
