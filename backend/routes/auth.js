@@ -71,7 +71,7 @@ router.get("/refetch", (req,res)=>{
 })
 
 router.get("/", (req, res) => {
-    res.redirect("https://tradepinas.vercel.app/");
+    res.redirect("https://trade-pinas.onrender.com/login");
 });
 
 
