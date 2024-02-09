@@ -50,7 +50,9 @@ app.post("/api/upload", upload.single("file"),(req,res)=>{
     // console.log(req.body)
     res.status(200).json("Image has been uploaded successfully")
 })
-
+app.get('/', (req, res) => {
+    res.send('Welcome to your backend server');
+  });
 app.listen(port,() => {
     connectDB()
     console.log("app is running on port 5000")
