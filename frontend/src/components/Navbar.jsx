@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import './NavBarStyle.css'
+
 import { GoSearch } from "react-icons/go";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { useContext, useState } from "react";
