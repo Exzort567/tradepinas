@@ -10,6 +10,7 @@ const authRoute=require('./routes/auth')
 const userRoute=require('./routes/users')
 const postRoute=require('./routes/posts')
 const commentRoute=require('./routes/comments')
+const port = process.env.PORT || 5000;
 
 mongoose.set('strictQuery', false);
 
@@ -50,7 +51,7 @@ app.post("/api/upload", upload.single("file"),(req,res)=>{
     res.status(200).json("Image has been uploaded successfully")
 })
 
-app.listen(5000,() => {
+app.listen(port,() => {
     connectDB()
     console.log("app is running on port 5000")
 })  
