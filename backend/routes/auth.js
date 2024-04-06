@@ -70,6 +70,10 @@ router.get("/refetch", (req,res)=>{
     })
 })
 
+router.get("/", (req, res) => {
+    res.redirect("https://trade-pinas.onrender.com/login");
+});
+
 
 
 module.exports=router
